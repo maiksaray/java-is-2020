@@ -9,13 +9,15 @@ public class ConvolutionProviderImpl implements ConvolutionProvider {
     public Color[][] apply(Color[][] image, double[][] kernel) {
 //      Here we assume that kernel is rectangular and has same height and width
         int kernelRadius = kernel.length / 2;
-
 //        var result = image.clone(); //Yeah, doesn't work since it's not true 2d and we'd end up with same values
-        var result = new Color[image.length][];
+        int imageLength = image.length;
+        
+        var result = new Color[imageLength][];
 
-        for (var i = 0; i < image.length; i++) {
-            result[i] = new Color[image[i].length];
-            for (var j = 0; j < image[i].length; j++) {
+        for (var i = 0; i < imageLength; i++) {
+            int rowLength = image[i].length;
+            result[i] = new Color[rowLength];
+            for (var j = 0; j < rowLength; j++) {
 
                 int r = 0, g = 0, b = 0;
                 for (var y = 0; y < kernel.length; y++) {
@@ -24,8 +26,8 @@ public class ConvolutionProviderImpl implements ConvolutionProvider {
                         int imageX = j + kernelRadius - x;
                         int imageY = i + kernelRadius - y;
 
-                        if (imageX < 0 || imageX >= image[i].length ||
-                                imageY < 0 || imageY >= image.length)
+                        if (imageX < 0 || imageX >= rowLength ||
+                                imageY < 0 || imageY >= imageLength)
                             continue;
 
                         r += image[imageY][imageX].getRed() * kernel[y][x];
