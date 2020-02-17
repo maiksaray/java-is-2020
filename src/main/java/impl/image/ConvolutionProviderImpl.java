@@ -11,7 +11,7 @@ public class ConvolutionProviderImpl implements ConvolutionProvider {
         int kernelRadius = kernel.length / 2;
 //        var result = image.clone(); //Yeah, doesn't work since it's not true 2d and we'd end up with same values
         int imageLength = image.length;
-        
+
         var result = new Color[imageLength][];
 
         for (var i = 0; i < imageLength; i++) {
@@ -19,7 +19,9 @@ public class ConvolutionProviderImpl implements ConvolutionProvider {
             result[i] = new Color[rowLength];
             for (var j = 0; j < rowLength; j++) {
 
-                int r = 0, g = 0, b = 0;
+                int r = 0;
+                int g = 0;
+                int b = 0;
                 for (var y = 0; y < kernel.length; y++) {
                     for (var x = 0; x < kernel[y].length; x++) {
 
