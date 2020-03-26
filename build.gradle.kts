@@ -16,10 +16,14 @@ configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_11
 }
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+    task("RunMain", JavaExec::class) {
+        main = "tasks.Main"
+        classpath = sourceSets["main"].runtimeClasspath
     }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+//    compileKotlin {
+//        kotlinOptions.jvmTarget = "1.8"
+//    }
+//    compileTestKotlin {
+//        kotlinOptions.jvmTarget = "1.8"
+//    }
 }
